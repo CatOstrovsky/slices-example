@@ -9,4 +9,10 @@ public class Slice : MonoBehaviour
     public int score;
 
     public SlicesConfiguration slicesConfiguration;
+
+    public void ApplyKind()
+    {
+        var currentRotate = slicesConfiguration.rotationOnKindConfig.Find(item => item.kind == kind);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, currentRotate.rotation);
+    }
 }

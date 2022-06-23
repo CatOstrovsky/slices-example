@@ -1,28 +1,35 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SlicePlace : MonoBehaviour
 {
-    private Button _trigger;
-    
+    public Dictionary<SliceKind, Slice> slices = new Dictionary<SliceKind, Slice>();
+
     private void Start()
     {
-        if (TryGetComponent(out _trigger))
+        SetUp();
+    }
+
+    private void SetUp()
+    {
+        slices.Clear();
+        foreach (SliceKind kind in Enum.GetValues(typeof(SliceKind)))
         {
-            _trigger.clicked += OnClicked;
+            slices.Add(kind, null);
         }
     }
 
-    private void OnDestroy()
+    public void Clear()
     {
-        if (_trigger != null)
+        foreach (var sliceKvp in slices)
         {
-            _trigger.clicked -= OnClicked;
+            if (sliceKvp.Value != null)
+            {
+                Destroy(sliceKvp.Value.gameObject);
+            }
         }
-    }
 
-    private void OnClicked()
-    {
-        
+        SetUp();
     }
 }

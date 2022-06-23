@@ -1,8 +1,11 @@
-﻿public enum SliceKind
+﻿using System.Runtime.Serialization;
+
+public enum SliceKind
 {
     TypeA,
     TypeB,
     TypeC,
     TypeD,
-    TypeE
+    TypeE,
+    TypeF
 }

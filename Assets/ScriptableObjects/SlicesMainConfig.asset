@@ -23,3 +23,5 @@ MonoBehaviour:
     rotation: 180
   - kind: 4
     rotation: 240
+  - kind: 5
+    rotation: 300
