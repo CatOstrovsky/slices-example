@@ -171,3 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b88b2e1fcad11479b4075deeb7554e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kind: 0
+  state: 0
+  score: 0
+  slicesConfiguration: {fileID: 11400000, guid: ab7ea6b491bbf834d9019cd5f8851cfb, type: 2}
