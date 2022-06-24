@@ -1,10 +1,9 @@
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Slice : MonoBehaviour
 {
-    [Header("Slice state and stats")]
-    public SliceKind kind ;
+    [Header("Slice state and stats")] public SliceKind kind;
     public SliceState state;
     public int score;
 
@@ -14,5 +13,13 @@ public class Slice : MonoBehaviour
     {
         var currentRotate = slicesConfiguration.rotationOnKindConfig.Find(item => item.kind == kind);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, currentRotate.rotation);
+    }
+
+
+    public Sequence MoveToSlicePlace(SlicePlace slicePlace)
+    {
+        var sequence = DOTween.Sequence();
+        sequence.Append(transform.DOMove(slicePlace.transform.position, .5f));
+        return sequence;
     }
 }

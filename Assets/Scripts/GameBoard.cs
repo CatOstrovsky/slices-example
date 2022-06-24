@@ -9,14 +9,13 @@ public class GameBoard : MonoBehaviour
     public SlicePlace[] slicePlaces = Array.Empty<SlicePlace>();
     public GameObject slicePrefab;
     public TextMeshProUGUI scoreText;
+    public Score score;
 
     private Slice currentSlice;
-    private int totalScore;
 
     private void Start()
     {
         GenerateNewSlice();
-        scoreText.text = totalScore.ToString();
     }
 
     private void GenerateNewSlice()
@@ -32,18 +31,20 @@ public class GameBoard : MonoBehaviour
         slice.score = Random.Range(1, 20);
         slice.ApplyKind();
         slice.transform.position = Vector3.zero;
+        slice.transform.localScale = Vector3.zero;
+        slice.transform.DOScale(Vector3.one, .25f);
 
         return slice;
     }
 
     public void OnTapSlicePlace(SlicePlace slicePlace)
     {
-        if (slicePlace.slices[currentSlice.kind] == null)
+        if (slicePlace.Slices[currentSlice.kind] == null)
         {
-            slicePlace.slices[currentSlice.kind] = currentSlice;
+            slicePlace.Slices[currentSlice.kind] = currentSlice;
             var slicePlaceTransform = slicePlace.transform;
             currentSlice.transform.SetParent(slicePlaceTransform);
-            currentSlice.transform.DOMove(slicePlaceTransform.position, 1f)
+            currentSlice.MoveToSlicePlace(slicePlace)
                 .OnComplete(() =>
                 {
                     CheckIfWin();
@@ -54,28 +55,12 @@ public class GameBoard : MonoBehaviour
 
     private void CheckIfWin()
     {
-        for (int i = 0; i < slicePlaces.Length; i++)
+        foreach (var slicePlace in slicePlaces)
         {
-            var slicePlace = slicePlaces[i];
-            var win = true;
-            var score = 0;
-
-            foreach (var sliceKvp in slicePlace.slices)
+            if (slicePlace.IsWin())
             {
-                if (sliceKvp.Value == null)
-                {
-                    win = false;
-                }
-                else
-                {
-                    score += sliceKvp.Value.score;
-                }
-            }
-
-            if (win)
-            {
-                totalScore += score;
-                scoreText.text = totalScore.ToString();
+                var totalScore = slicePlace.GetTotalScore();
+                score.AddScore(totalScore);
                 slicePlace.Clear();
             }
         }

@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class SlicePlace : MonoBehaviour
 {
-    public Dictionary<SliceKind, Slice> slices = new Dictionary<SliceKind, Slice>();
+    public readonly Dictionary<SliceKind, Slice> Slices = new Dictionary<SliceKind, Slice>();
 
     private void Start()
     {
         SetUp();
     }
 
+    public bool IsWin()
+    {
+        foreach (var sliceKvp in Slices)
+        {
+            if (sliceKvp.Value == null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void SetUp()
     {
-        slices.Clear();
+        Slices.Clear();
         foreach (SliceKind kind in Enum.GetValues(typeof(SliceKind)))
         {
-            slices.Add(kind, null);
+            Slices.Add(kind, null);
         }
     }
 
     public void Clear()
     {
-        foreach (var sliceKvp in slices)
+        foreach (var sliceKvp in Slices)
         {
             if (sliceKvp.Value != null)
             {
@@ -31,5 +44,16 @@ public class SlicePlace : MonoBehaviour
         }
 
         SetUp();
+    }
+
+    public int GetTotalScore()
+    {
+        var total = 0;
+        foreach (var slice in Slices)
+        {
+            total += slice.Value.score;
+        }
+
+        return total;
     }
 }
