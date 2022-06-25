@@ -40,10 +40,9 @@ public class Bootstrap : MonoBehaviour
         var builder = new ContainerBuilder();
 
         builder.RegisterInstance(scenesConfig).As<ScenesScriptableObject>();
-        builder.RegisterInstance(new PlayerPrefsStorageService()).As<IStorageService>();
-
-        builder.RegisterType<StorageProfileService>().As<IProfileService>();
-        builder.RegisterType<SceneService>().As<ISceneService>();
+        builder.RegisterType<PlayerPrefsStorageService>().As<IStorageService>().SingleInstance();
+        builder.RegisterType<StorageProfileService>().As<IProfileService>().SingleInstance();
+        builder.RegisterType<SceneService>().As<ISceneService>().SingleInstance();
 
         var container = builder.Build();
 
