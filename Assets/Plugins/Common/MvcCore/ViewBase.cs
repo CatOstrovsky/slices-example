@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class ViewBase :
+    public abstract class ViewBase :
         MonoBehaviour,
         IDisposable
     {

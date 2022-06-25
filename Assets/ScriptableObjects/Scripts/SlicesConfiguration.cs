@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SlicesConfig", menuName = "ScriptableObjects/CreateSlicesConfig", order = 1)]
+[CreateAssetMenu(fileName = "Slices Config", menuName = "ScriptableObjects/Create Slices Config", order = 1)]
 public class SlicesConfiguration : ScriptableObject
 {
     [Header("Slices configuration")]

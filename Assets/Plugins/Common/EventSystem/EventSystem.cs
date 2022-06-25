@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace Plugins.Common
 {
-    public class EventsBus : Singleton<EventsBus>
+    public class EventSystem : Singleton<EventSystem>
     {
-        private Dictionary<Type, List<Action<object>>> _handlers = new Dictionary<Type, List<Action<object>>>();
+        private Dictionary<Type, List<Action<IEvent>>> _handlers = new Dictionary<Type, List<Action<IEvent>>>();
 
-        public void Subscribe<T>(Action<object> handler)
+        public void Subscribe<T>(Action<IEvent> handler) where T : IEvent
         {
             if (!_handlers.ContainsKey(typeof(T)))
             {
-                _handlers.Add(typeof(T), new List<Action<object>>());
+                _handlers.Add(typeof(T), new List<Action<IEvent>>());
             }
 
             _handlers[typeof(T)].Add(handler);
         }
 
-        public void Unsubscribe<T>(Action<object> handler)
+        public void Unsubscribe<T>(Action<IEvent> handler)
         {
             if (!_handlers.ContainsKey(typeof(T)))
             {
@@ -25,13 +25,13 @@ namespace Plugins.Common
             }
         }
 
-        public void Emmit<T>(object callArgs)
+        public void Emmit<T>(T eventObject) where T : IEvent
         {
             if (_handlers.ContainsKey(typeof(T)))
             {
                 foreach (var handler in _handlers[typeof(T)])
                 {
-                    handler.Invoke(callArgs);
+                    handler.Invoke(eventObject);
                 }
             }
         }

@@ -23,6 +23,7 @@ namespace Plugins.Common
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             debugMenuButton.onClick.AddListener(ToggleVisible);
         }
 
