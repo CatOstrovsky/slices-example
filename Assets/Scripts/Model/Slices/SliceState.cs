@@ -1,5 +1,8 @@
-﻿public enum SliceState
+﻿namespace Model.Slices
 {
-    OnBoard,
-    OnSlicePlace
+    public enum SliceState
+    {
+        OnBoard,
+        OnSlicePlace
+    }
 }

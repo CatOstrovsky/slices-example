@@ -1,6 +1,9 @@
-﻿public class SliceModel
+﻿namespace Model.Slices
 {
-    public SliceKind kind;
-    public SliceState state;
-    public int score;
+    public class SliceModel
+    {
+        public SliceKind kind;
+        public SliceState state;
+        public int score;
+    }
 }

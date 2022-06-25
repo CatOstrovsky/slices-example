@@ -1,4 +1,7 @@
-﻿public class ScoreModel
+﻿namespace Model
 {
-    public int currentScore = 0;
+    public class ScoreModel
+    {
+        public int currentScore = 0;
+    }
 }

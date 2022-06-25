@@ -1,14 +1,17 @@
 ﻿using System;
 
-[Serializable]
-public class SliceRule
+namespace Model.Slices
 {
-    public SliceKind kind;
-    public int rotation;
-
-    public SliceRule(SliceKind kind, int rotation)
+    [Serializable]
+    public class SliceRule
     {
-        this.kind = kind;
-        this.rotation = rotation;
+        public SliceKind kind;
+        public int rotation;
+
+        public SliceRule(SliceKind kind, int rotation)
+        {
+            this.kind = kind;
+            this.rotation = rotation;
+        }
     }
 }

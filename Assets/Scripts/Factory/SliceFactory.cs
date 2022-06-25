@@ -1,9 +1,9 @@
-﻿using Core;
+﻿using Controller;
+using Core;
 
-namespace Factories
+namespace Factory
 {
     public class SliceFactory : FactoryBase<SliceController>
     {
-        
     }
 }

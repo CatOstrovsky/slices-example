@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Model.Slices;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Slices Config", menuName = "ScriptableObjects/Create Slices Config", order = 1)]

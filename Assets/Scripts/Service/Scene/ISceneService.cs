@@ -1,9 +1,11 @@
 ﻿using Core;
-using UnityEditor;
 
-public interface ISceneService : IService
+namespace Service.Scene
 {
-    string CurrentSceneName { get; }
-    ISceneData CurrentSceneData { get; }
-    void LoadScene(int sceneId, ISceneData options = null);
+    public interface ISceneService : IService
+    {
+        string CurrentSceneName { get; }
+        ISceneData CurrentSceneData { get; }
+        void LoadScene(int sceneId, ISceneData options = null);
+    }
 }

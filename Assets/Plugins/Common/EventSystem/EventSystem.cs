@@ -36,8 +36,4 @@ namespace Plugins.Common
             }
         }
     }
-
-    public abstract class IEventItem
-    {
-    }
 }

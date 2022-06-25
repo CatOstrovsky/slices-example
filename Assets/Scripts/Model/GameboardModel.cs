@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Controller;
 
-public class GameboardModel
+namespace Model
 {
-    public List<SlicePlaceController> slicePlaces = new List<SlicePlaceController>();
-    public SliceController CurrentSlice;
+    public class GameboardModel
+    {
+        public List<SlicePlaceController> slicePlaces = new List<SlicePlaceController>();
+        public SliceController CurrentSlice;
+    }
 }

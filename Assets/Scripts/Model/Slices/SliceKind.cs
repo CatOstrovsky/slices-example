@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
-
-public enum SliceKind
+﻿namespace Model.Slices
 {
-    TypeA,
-    TypeB,
-    TypeC,
-    TypeD,
-    TypeE,
-    TypeF
+    public enum SliceKind
+    {
+        TypeA,
+        TypeB,
+        TypeC,
+        TypeD,
+        TypeE,
+        TypeF
+    }
 }

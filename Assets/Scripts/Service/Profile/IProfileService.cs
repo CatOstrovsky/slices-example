@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core;
 
-namespace Managers
+namespace Service.Profile
 {
     public interface IProfileService : IService
     {

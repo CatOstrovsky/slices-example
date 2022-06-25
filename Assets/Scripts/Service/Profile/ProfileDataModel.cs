@@ -1,6 +1,6 @@
 ﻿using Plugins.Common;
 
-namespace Managers
+namespace Service.Profile
 {
     public class ProfileDataModel : ModelBase
     {

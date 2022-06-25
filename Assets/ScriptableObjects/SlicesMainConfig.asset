@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationOnKindConfig:
   - kind: 0
-    rotation: 0
+    rotation: 45
   - kind: 1
-    rotation: 60
+    rotation: 105
   - kind: 2
-    rotation: 120
+    rotation: 165
   - kind: 3
-    rotation: 180
+    rotation: 225
   - kind: 4
-    rotation: 240
+    rotation: 285
   - kind: 5
-    rotation: 300
+    rotation: 345

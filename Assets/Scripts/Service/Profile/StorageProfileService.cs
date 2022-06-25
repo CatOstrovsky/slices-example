@@ -2,8 +2,9 @@
 using Core;
 using Events;
 using Plugins.Common;
+using Service.Storage;
 
-namespace Managers
+namespace Service.Profile
 {
     using Log = Log<StorageProfileService>;
 
@@ -28,7 +29,7 @@ namespace Managers
             
             await Load();
             AddDataListeners();
-            await Task.Delay(1000);
+            await Task.Delay(3000);
             
             await base.Init();
 

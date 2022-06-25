@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
+using Controller;
+using Model.Slices;
 
-public class SlicePlaceModel
+namespace Model
 {
-    public readonly Dictionary<SliceKind, SliceController> Slices = new Dictionary<SliceKind, SliceController>();
+    public class SlicePlaceModel
+    {
+        public readonly Dictionary<SliceKind, SliceController> Slices = new Dictionary<SliceKind, SliceController>();
 
+    }
 }

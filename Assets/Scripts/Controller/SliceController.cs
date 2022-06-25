@@ -1,46 +1,49 @@
-﻿using System;
-using System.Threading.Tasks;
-using Core;
+﻿using Core;
 using DG.Tweening;
+using Model.Slices;
+using View;
 using Random = UnityEngine.Random;
 
-public class SliceController : ControllerBase
+namespace Controller
 {
-    private SliceModel model = new SliceModel();
-    private SlicePlaceController attachedPlace;
-    
-    public SliceView view;
-    public override ViewBase GetView => view;
-
-    private void Awake()
+    public class SliceController : ControllerBase
     {
-        view.ShowUp();
-    }
+        private SliceModel model = new SliceModel();
+        private SlicePlaceController attachedPlace;
 
-    public void SetKind(SliceKind sliceKind)
-    {
-        model.kind = sliceKind;
-        view.ApplyKind(model.kind);
-    }
+        public SliceView view;
+        public override ViewBase GetView => view;
 
-    public void RandomizeScore()
-    {
-        model.score = Random.Range(1, 20);
-    }
+        private void Awake()
+        {
+            view.ShowUp();
+        }
 
-    public SliceKind GetKind()
-    {
-        return model.kind;
-    }
+        public void SetKind(SliceKind sliceKind)
+        {
+            model.kind = sliceKind;
+            view.ApplyKind(model.kind);
+        }
 
-    public int GetScore()
-    {
-        return model.score;
-    }
+        public void RandomizeScore()
+        {
+            model.score = Random.Range(1, 20);
+        }
 
-    public Sequence MoveToPlace(SlicePlaceController slicePlaceController)
-    {
-        attachedPlace = slicePlaceController;
-        return view.MoveToPlaceAnimation(slicePlaceController);
+        public SliceKind GetKind()
+        {
+            return model.kind;
+        }
+
+        public int GetScore()
+        {
+            return model.score;
+        }
+
+        public Sequence MoveToPlace(SlicePlaceController slicePlaceController)
+        {
+            attachedPlace = slicePlaceController;
+            return view.MoveToPlaceAnimation(slicePlaceController);
+        }
     }
 }

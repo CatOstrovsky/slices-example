@@ -1,6 +1,7 @@
-﻿using Managers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Plugins.Common;
+using Service.Profile;
+using Service.Storage;
 using UnityEngine;
 
 namespace DebugMenu
@@ -18,7 +19,7 @@ namespace DebugMenu
                 GUILayout.Label("Initialization in progress...");
                 return;
             }
-            
+
             GUILayout.BeginVertical(GUI.skin.box);
             GUILayout.Label("Profile data");
             GUILayout.TextArea(JsonConvert.SerializeObject(profileDataModel));
@@ -27,6 +28,7 @@ namespace DebugMenu
                 profileDataModel = new ProfileDataModel();
                 storageService.Get(StorageProfileService.profileDataStorageKey, ref profileDataModel);
             }
+
             GUILayout.EndVertical();
         }
     }

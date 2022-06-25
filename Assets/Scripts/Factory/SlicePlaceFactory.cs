@@ -1,8 +1,9 @@
-﻿using Core;
+﻿using Controller;
+using Core;
 using Plugins.Common;
 using UnityEngine;
 
-namespace Factories
+namespace Factory
 {
     using Log = Log<SlicePlaceFactory>;
         

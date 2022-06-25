@@ -1,12 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Autofac;
 using Core;
 using DebugMenu;
-using Managers;
 using Plugins.Common;
+using Service.Profile;
 using Service.Scene;
+using Service.Storage;
 using UnityEngine;
 
+using Log = Plugins.Common.Log<Bootstrap>;
 public class Bootstrap : MonoBehaviour
 {
     [Header("Scene Service Configuration")]
@@ -54,7 +57,6 @@ public class Bootstrap : MonoBehaviour
     private async Task Initialize()
     {
         var services = ServiceProvider.GetAll();
-        var index = 0;
         foreach (var serviceKvp in services)
         {
             if (serviceKvp.Value is ServiceBase serviceBase)
@@ -63,12 +65,14 @@ public class Bootstrap : MonoBehaviour
             }
         }
 
+        var index = 0;
         foreach (var serviceKvp in services)
         {
             if (serviceKvp.Value is ServiceBase serviceBase)
             {
                 index++;
                 serviceLoadingProgress.Value = (float)index / services.Count;
+
                 await serviceBase.IsInitializedTask;
             }
         }

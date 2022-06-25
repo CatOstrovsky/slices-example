@@ -11,6 +11,7 @@ public abstract class ControllerBase :
     {
         Destroy(gameObject);
     }
+
     public abstract ViewBase GetView { get; }
 }
 

@@ -5,7 +5,7 @@ namespace Core
     public abstract class FactoryBase<T> : MonoBehaviour where T : ControllerBase
     {
         public T unitPrefab;
-        
+
         public virtual T GetUnit()
         {
             var unit = unitPrefab.GetInstance();
