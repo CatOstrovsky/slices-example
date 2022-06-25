@@ -11,7 +11,7 @@ namespace View
         [SerializeField]
         public SlicesConfiguration slicesConfiguration;
 
-        public void ApplyKind(SliceKind sliceKind)
+        public virtual void ApplyKind(SliceKind sliceKind)
         {
             var rotation = transform.rotation;
             var currentRotate = slicesConfiguration.rotationOnKindConfig.Find(item => item.kind == sliceKind);
@@ -26,10 +26,18 @@ namespace View
             return sequence;
         }
 
-        public void ShowUp()
+        public virtual void ShowUp()
         {
             transform.localScale = Vector3.zero;
             transform.DOScale(Vector3.one, .25f);
+        }
+
+        public virtual Sequence OnBeforeHide()
+        {
+            var sequence = DOTween.Sequence();
+            sequence.Append(transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), .25f));
+            sequence.Append(transform.DOScale(Vector3.zero, .25f));
+            return sequence;
         }
     }
 }

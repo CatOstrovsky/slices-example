@@ -8,11 +8,13 @@ namespace Controller
 {
     public class SliceController : ControllerBase
     {
-        private SliceModel model = new SliceModel();
+        protected virtual SliceModel model { get; } = new SliceModel { Type = SliceType.Regular };
         private SlicePlaceController attachedPlace;
 
         public SliceView view;
         public override ViewBase GetView => view;
+        public SliceType SliceType => model.Type;
+        public SliceKind Kind => model.kind;
 
         private void Awake()
         {
@@ -24,15 +26,10 @@ namespace Controller
             model.kind = sliceKind;
             view.ApplyKind(model.kind);
         }
-
-        public void RandomizeScore()
+        
+        public virtual void RandomizeScore()
         {
             model.score = Random.Range(1, 20);
-        }
-
-        public SliceKind GetKind()
-        {
-            return model.kind;
         }
 
         public int GetScore()
@@ -44,6 +41,15 @@ namespace Controller
         {
             attachedPlace = slicePlaceController;
             return view.MoveToPlaceAnimation(slicePlaceController);
+        }
+
+        public override void Dispose()
+        {
+            view.OnBeforeHide()
+                .OnComplete(() =>
+                {
+                    base.Dispose();
+                });
         }
     }
 }

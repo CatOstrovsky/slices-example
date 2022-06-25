@@ -20,7 +20,7 @@ namespace Controller
         public void Start()
         {
             GenerateSlicePlaces();
-            GenerateNewSlice();
+            GenerateNewSlice(SliceType.Regular);
         }
 
         private void GenerateSlicePlaces()
@@ -33,19 +33,32 @@ namespace Controller
             }
         }
 
-        private void GenerateNewSlice()
+        private void GenerateNewSlice(SliceType? sliceType = null)
         {
-            model.CurrentSlice = CreateSlice();
+            model.CurrentSlice = CreateSlice(sliceType);
         }
 
-        private SliceController CreateSlice()
+        private SliceController CreateSlice(SliceType? sliceType = null)
         {
-            var slice = sliceFactory.GetUnit();
+            var randomizedType = sliceType ?? RandomizeSliceType();
+            var slice = sliceFactory.GetUnit(randomizedType);
             var sliceKind = GetRandomSliceKind();
             slice.SetKind(sliceKind);
             slice.RandomizeScore();
 
             return slice;
+        }
+
+        private SliceType RandomizeSliceType()
+        {
+            if (Random.Range(0f, 1f) > .8f)
+            {
+                return SliceType.Bomb;
+            }
+            else
+            {
+                return SliceType.Regular;
+            }
         }
 
         private SliceKind GetRandomSliceKind(int tryCount = 0)
@@ -78,7 +91,7 @@ namespace Controller
 
         public void SetSlicePlace(SlicePlaceController slicePlaceController)
         {
-            var currentSliceKind = model.CurrentSlice.GetKind();
+            var currentSliceKind = model.CurrentSlice.Kind;
             if (!slicePlaceController.HasSliceWithKind(currentSliceKind))
             {
                 slicePlaceController.AddSlice(model.CurrentSlice)
@@ -87,7 +100,6 @@ namespace Controller
                         GenerateNewSlice();
                         CheckIfWin();
                     });
-                ;
             }
         }
 

@@ -21,7 +21,7 @@ namespace Controller
 
         public Sequence AddSlice(SliceController sliceController)
         {
-            model.Slices[sliceController.GetKind()] = sliceController;
+            model.Slices[sliceController.Kind] = sliceController;
             sliceController.transform.SetParent(transform);
             return sliceController.MoveToPlace(this);
         }
@@ -33,15 +33,20 @@ namespace Controller
 
         public bool IsWin()
         {
+            var win = true;
             foreach (var sliceKvp in model.Slices)
             {
                 if (sliceKvp.Value == null)
                 {
-                    return false;
+                    win = false;
+                }
+                else if(sliceKvp.Value.SliceType == SliceType.Bomb)
+                {
+                    return true;
                 }
             }
 
-            return true;
+            return win;
         }
 
         private void SetUp()
@@ -71,7 +76,10 @@ namespace Controller
             var total = 0;
             foreach (var slice in model.Slices)
             {
-                total += slice.Value.GetScore();
+                if (slice.Value != null)
+                {
+                    total += slice.Value.GetScore();
+                }
             }
 
             return total;

@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d0eecf3c104d8ea31c93935662eb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreController: {fileID: 0}
   sliceFactory: {fileID: 8650994022221786386}
   slicePlaceFactory: {fileID: 6940633490301253662}
 --- !u!1 &2360403257057830741
@@ -104,7 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d3aae7cd714fb2b1b74ce0e1bd76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 8327277495747105353, guid: c08f80b66a5b0924c971d0ccadbd7240, type: 3}
+  units:
+  - unitPrefab: {fileID: 4584039990606421276, guid: 6047fc4c6e11686468bcb5b8bc1b5c7a, type: 3}
+    type: 1
+  - unitPrefab: {fileID: 8327277495747105353, guid: c08f80b66a5b0924c971d0ccadbd7240, type: 3}
+    type: 0
 --- !u!222 &3779739433042540950
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -193,3 +198,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 4104415589314033361, guid: b5bb538fb30aa52469b3b1be7be450b9, type: 3}
+  placeOptions: []

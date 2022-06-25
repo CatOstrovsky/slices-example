@@ -3,7 +3,7 @@
     public class SliceModel
     {
         public SliceKind kind;
-        public SliceState state;
+        public SliceType Type = SliceType.Regular;
         public int score;
     }
 }
